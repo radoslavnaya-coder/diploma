@@ -6,6 +6,11 @@
   padding: 2rem;
   font-weight: normal;
 }
+*,
+*::before,
+*::after{
+  box-sizing: border-box;
+}
 
 body{
   background: #FFFEF4;
