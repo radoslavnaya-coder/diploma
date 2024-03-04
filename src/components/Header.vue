@@ -4,14 +4,11 @@ import phPlusLight from "./icons/Ph_plus-light.vue";
 </script>
 <template>
   <header>
-    <div>
-      <nav>
-        <v-row>
+        <v-row class="text-center">
           <v-col cols="3">
             <router-link to="/">
               <img src="@/assets/logo.png" width="118" height="86" />
             </router-link>
-            
           </v-col>
           <v-col class="search-label" cols="6">
             <input type="search" name="main-search" />
@@ -24,13 +21,14 @@ import phPlusLight from "./icons/Ph_plus-light.vue";
             <img src="@/assets/user-img.png" />
           </v-col>
         </v-row>
-      </nav>
-    </div>
   </header>
 </template>
 <style scoped>
 header {
+  width: 100vw;
+  padding: 1rem 12rem 0 6rem;
   font-size: 16px;
+  border-bottom: 1px solid #7e2513;
 }
 
 header input,
@@ -39,7 +37,7 @@ header button {
 }
 input {
   padding: 0.7em;
-  width: 80%;
+  width: 85%;
   border: 1px solid #7e2513;
   border-right: none;
   margin: 0.5rem 0 0.5rem 2rem;
@@ -59,7 +57,7 @@ input::-webkit-search-cancel-button {
 }
 button {
   padding: 1rem;
-  margin: 1.3rem 0 0.5rem 9rem;
+  margin: 0.85rem 0 0.5rem 12rem;
   background: url(@/assets/plus-background.png) no-repeat center left 80%/100%;
 }
 button svg{
@@ -67,9 +65,9 @@ button svg{
   top: 0.1rem;
 }
 .search-label{
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 .user-img{
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 </style>

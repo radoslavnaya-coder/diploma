@@ -12,4 +12,7 @@
     align-items: center;
   }
 }
+header{
+  display: none;
+}
 </style>
