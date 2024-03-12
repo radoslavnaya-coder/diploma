@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "masonry-layout": "^4.2.2",
+    "@yeger/vue-masonry-wall": "^5.0.8",
     "vue-images-loaded": "^1.1.2",
     "vue-router": "^4.2.5",
     "vuetify": "^3.5.6"
