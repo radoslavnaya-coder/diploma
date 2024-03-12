@@ -1,3 +1,6 @@
+<script setup>
+import ImagesGrid from '../components/imagesGrid.vue'
+</script>
 <script>
 export default {
   data: () => ({
@@ -11,15 +14,27 @@ export default {
       "Art",
       "Tech",
       "Creative Writing",
+      "Еда",
+      "Своими руками",
+      "Vacation",
+      "Food",
+      "Drawers",
+      "Shopping",
+      "Art",
+      "Tech",
+      "Creative Writing",
     ],
   }),
-};
+}
 </script>
 
 <template>
   <main>
   <v-chip-group
   selected-class="orange"
+  next-icon=""
+  prev-icon=""
+  show-arrows
   multiple
   >
     <v-chip 
@@ -31,6 +46,7 @@ export default {
       {{ tag }}
     </v-chip>
   </v-chip-group>
+    <ImagesGrid />
 </main>
 </template>
 <style scoped>
