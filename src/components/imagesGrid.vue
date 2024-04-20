@@ -1,15 +1,3 @@
-<!-- <template>
-    
-    <div class="grid">
-        <img src="https://cs13.pikabu.ru/post_img/2023/09/11/5/1694416670162565263.jpg" class="grid-item">
-        <img src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1" class="grid-item">
-        <img src="https://cs13.pikabu.ru/post_img/2023/09/11/5/1694416670162565263.jpg" class="grid-item">
-        <img src="https://cs13.pikabu.ru/post_img/2023/09/11/5/1694416670162565263.jpg" class="grid-item">
-        <img src="https://cs13.pikabu.ru/post_img/2023/09/11/5/1694416670162565263.jpg" class="grid-item">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/181px-Cat_August_2010-4.jpg" class="grid-item">
-        <img src="https://cs13.pikabu.ru/post_img/2023/09/11/5/1694416670162565263.jpg" class="grid-item">
-    </div>
-</template> -->
 <script setup lang="ts">
 const items = [
   {
@@ -106,7 +94,7 @@ const items = [
     title: 'Second',
     description: 'The second item.',
     src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/181px-Cat_August_2010-4.jpg',
-    },
+    }
 ]
 </script>
 <template>
