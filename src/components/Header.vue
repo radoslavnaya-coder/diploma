@@ -4,35 +4,42 @@ import phPlusLight from "./icons/Ph_plus-light.vue";
 </script>
 <template>
   <header>
-        <v-row class="text-center">
-          <v-col cols="3">
-            <router-link to="/">
-              <img src="@/assets/images/logo.png" width="118" height="86" />
-            </router-link>
-          </v-col>
-          <v-col class="search-label" cols="6">
-            <input type="search" name="main-search" />
-            <label for="main-search"><MaterialSymbols_searchVue /></label>
-          </v-col>
-          <v-col cols="2" class="button">
-            <router-link to="/add"><p><phPlusLight /></p></router-link>
-          </v-col>
-          <v-col class="user-img" cols="1">
-            <img src="@/assets/images/user-img.png" />
-          </v-col>
-        </v-row>
+    <div class="container">
+    <router-link to="/">
+      <img src="@/assets/images/logo.png" width="118" height="86" />
+    </router-link>
+    <div>
+    <input type="search" name="main-search" />
+    <label for="main-search"><MaterialSymbols_searchVue /></label>
+    </div>
+    <router-link to="/home/add">
+      <div class="button">
+        <phPlusLight />
+      </div>
+    </router-link>
+    <div class="user-img">
+      <img src="@/assets/images/user-img.png" />
+    </div>
+  </div>
   </header>
 </template>
 <style scoped>
 header {
-  width: 100vw;
-  padding: 1rem 12rem 0 6rem;
+  width: 100%;
   font-size: 16px;
   border-bottom: 1px solid #7e2513;
 }
-
-header input,
-header button {
+.container {
+  max-width: 1640px;
+  margin: 0.5rem auto;
+  display: grid;
+  grid-template-columns: 2fr 8fr 1fr 1fr;
+  align-items: center;
+}
+.container a {
+  text-align: center;
+}
+.container input, button {
   outline: none;
 }
 input {
@@ -44,10 +51,10 @@ input {
 }
 label {
   cursor: pointer;
-  padding: 0.9rem 0.95rem 1.5rem 0.95rem;
+  padding: 0.9rem 0.95rem 1rem 0.95rem;
   background: url(@/assets/images/plus-background.png) no-repeat center 0/100%;
 }
-label svg{
+label svg {
   position: relative;
   top: 0.3rem;
 }
@@ -56,19 +63,23 @@ input::-webkit-search-cancel-button {
   display: none !important;
 }
 .button {
+  margin-top: 0.2rem;
   padding: 1rem;
-  background: url(@/assets/images/plus-background.png) no-repeat center top 50%/100%;
-  background-size: 19%;
-  margin-bottom: 0.5rem;
+  background: url(@/assets/images/plus-background.png) no-repeat center;
+  background-size: 40%;
 }
-.button svg{
-  position: relative;
-  top: 0.1rem;
-}
-.search-label{
+.search-label {
   margin-top: 0.5rem;
 }
-.user-img{
+.user-img {
   margin-top: 0.5rem;
+  border: 1px solid #7e2513;
+  max-width: 65px;
+  max-height: 65px;
+  line-height: 0;
+}
+.user-img img {
+  max-width: 63px;
+  max-height: 63px;
 }
 </style>

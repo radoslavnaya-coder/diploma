@@ -5,7 +5,7 @@
         </div>
         <div class="auth-form">
             <form>
-                <router-link to="/"><img src="@/assets/images/auth/auth-arrow.svg" alt="Назад"></router-link>
+                <div @click="$router.back()"><img src="@/assets/images/auth/auth-arrow.svg" alt="Назад"></div>
                 <input type="text" placeholder="Логин">
                 <input type="text" placeholder="Пароль">
                 <button>Войти</button>
@@ -16,11 +16,6 @@
 </template>
 <script>
 </script>
-<style>
-header {
-  display: none;
-}
-</style>
 <style scoped>
 .images {
     display: flex;

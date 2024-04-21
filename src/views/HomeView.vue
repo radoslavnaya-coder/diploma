@@ -1,4 +1,5 @@
 <script setup>
+import Header from '../components/Header.vue'
 import ImagesGrid from '../components/imagesGrid.vue'
 </script>
 <script>
@@ -29,11 +30,10 @@ export default {
 </script>
 
 <template>
+  <Header />
   <main>
   <v-chip-group
   selected-class="orange"
-  next-icon=""
-  prev-icon=""
   show-arrows
   multiple
   >
@@ -52,13 +52,13 @@ export default {
 <style scoped>
 main{
   width: 100vw;
-  padding: 1.7rem 12rem 0 14rem;
+  padding: 1rem 12rem 2rem 14rem;
 }
 .v-chip {
   border-radius: 0 !important;
   padding: 1.3rem 1.5rem !important;
   font-size: 18px !important;
-  margin: 0 5px !important;
+  margin: 1rem 5px !important;
 }
 .orange{
   background: #E36238 !important;

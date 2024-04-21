@@ -39,9 +39,6 @@
 </template>
 
 <style>
-header {
-  display: none;
-}
 </style>
 <style scoped>
 main {
