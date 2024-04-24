@@ -5,7 +5,7 @@
         </div>
         <div class="auth-form">
             <form>
-                <div @click="$router.back()"><img src="@/assets/images/auth/auth-arrow.svg" alt="Назад"></div>
+                <div><img @click="$router.back()" src="@/assets/images/auth/auth-arrow.svg" alt="Назад">Вход</div>
                 <input type="text" placeholder="Логин">
                 <input type="text" placeholder="Пароль">
                 <button>Войти</button>
@@ -41,8 +41,6 @@
     width: 26rem;
 }
 .auth-form img {
-    border: 1px solid #7E2513;
-    padding: 1rem;
     filter: grayscale(40%);
 }
 .auth-form img:hover {
@@ -73,6 +71,14 @@
 }
 .auth-form a {
     text-align: center;
+}
+form div {
+    display: flex;
+    align-items: center;
+    color: #7E2513;
+    gap: 6rem;
+    font-size: 20px;
+    padding: 1rem 0;
 }
 @keyframes fade {
     0% {

@@ -5,7 +5,7 @@
         </div>
         <div class="auth-form">
             <form>
-                <div @click="$router.back()"><img src="@/assets/images/auth/auth-arrow.svg" alt="Назад"></div>
+                <div @click="$router.back()"><img src="@/assets/images/auth/auth-arrow.svg" alt="Назад">Регистрация</div>
                 <input type="text" placeholder="Логин">
                 <input type="email" placeholder="E-mail">
                 <input type="password" placeholder="Пароль">
@@ -36,8 +36,6 @@
     margin: auto;
 }
 .auth-form img {
-    border: 1px solid #7E2513;
-    padding: 1rem;
     filter: grayscale(40%);
 }
 .auth-form img:hover {
@@ -75,6 +73,14 @@
 }
 .auth-form a {
     text-align: center;
+}
+form div {
+    display: flex;
+    align-items: center;
+    color: #7E2513;
+    padding: 1rem 0;
+    gap: 4.5rem;
+    font-size: 20px;
 }
 @keyframes fade {
     0% {

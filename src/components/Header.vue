@@ -68,6 +68,9 @@ input::-webkit-search-cancel-button {
   background: url(@/assets/images/plus-background.png) no-repeat center;
   background-size: 40%;
 }
+.button svg {
+  margin: 0.1rem 0.2rem 0 0;
+}
 .search-label {
   margin-top: 0.5rem;
 }
