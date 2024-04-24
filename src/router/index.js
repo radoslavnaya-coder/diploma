@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import AboutView from '@/views/AboutView.vue'
 import AddView from '@/views/func/AddView.vue'
 import UserProfile from '@/views/user/UserProfile.vue'
+import UserEdit from '@/views/user/UserEdit.vue'
+import ContentPage from '@/views/ContentPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +28,16 @@ const router = createRouter({
       path: '/user/profile',
       name: 'user-profile',
       component: UserProfile
+    },
+    {
+      path: '/user/edit',
+      name: 'user-edit',
+      component: UserEdit
+    },
+    {
+      path: '/page',
+      name: 'page',
+      component: ContentPage
     },
     {
       path: '/login',

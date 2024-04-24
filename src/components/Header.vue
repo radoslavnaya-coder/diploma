@@ -5,25 +5,27 @@ import phPlusLight from "./icons/Ph_plus-light.vue";
 <template>
   <header>
     <div class="container">
-    <router-link to="/">
-      <img src="@/assets/images/logo.png" width="118" height="86" />
-    </router-link>
-    <div>
-    <input type="search" name="main-search" />
-    <label for="main-search"><MaterialSymbols_searchVue /></label>
-    </div>
-    <router-link to="/home/add">
-      <div class="button">
-        <phPlusLight />
+      <router-link to="/">
+        <img src="@/assets/images/logo.png" width="118" height="86" />
+      </router-link>
+      <div>
+        <input type="search" name="main-search" />
+        <label for="main-search"><MaterialSymbols_searchVue /></label>
       </div>
-    </router-link>
-    <div class="user-img">
-      <img src="@/assets/images/user-img.png" />
+      <router-link to="/home/add">
+        <div class="button">
+          <phPlusLight />
+        </div>
+      </router-link>
+      <router-link to="/user/profile">
+        <div class="user-img">
+          <img src="@/assets/images/user-img.png" />
+        </div>
+      </router-link>
     </div>
-  </div>
   </header>
 </template>
-<style scoped>
+<style lang="scss" scoped>
 header {
   width: 100%;
   font-size: 16px;
@@ -35,28 +37,29 @@ header {
   display: grid;
   grid-template-columns: 2fr 8fr 1fr 1fr;
   align-items: center;
-}
-.container a {
-  text-align: center;
-}
-.container input, button {
-  outline: none;
+  a {
+    text-align: center;
+  }
+  input,
+  button {
+    outline: none;
+  }
 }
 input {
   padding: 0.7em;
   width: 85%;
   border: 1px solid #7e2513;
   border-right: none;
-  margin: 0.5rem 0 0.5rem 2rem;
+  margin: 0.5rem 0 0.4rem 2rem;
 }
 label {
   cursor: pointer;
-  padding: 0.9rem 0.95rem 1rem 0.95rem;
+  padding: 0.9rem 0.95rem 1.1rem 0.95rem;
   background: url(@/assets/images/plus-background.png) no-repeat center 0/100%;
-}
-label svg {
-  position: relative;
-  top: 0.3rem;
+  svg {
+    position: relative;
+    top: 0.3rem;
+  }
 }
 
 input::-webkit-search-cancel-button {
@@ -67,12 +70,9 @@ input::-webkit-search-cancel-button {
   padding: 1rem;
   background: url(@/assets/images/plus-background.png) no-repeat center;
   background-size: 40%;
-}
-.button svg {
-  margin: 0.1rem 0.2rem 0 0;
-}
-.search-label {
-  margin-top: 0.5rem;
+  svg {
+    margin: 0.1rem 0.2rem 0 0;
+  }
 }
 .user-img {
   margin-top: 0.5rem;
@@ -80,9 +80,9 @@ input::-webkit-search-cancel-button {
   max-width: 65px;
   max-height: 65px;
   line-height: 0;
-}
-.user-img img {
-  max-width: 63px;
-  max-height: 63px;
+  img {
+    max-width: 63px;
+    max-height: 63px;
+  }
 }
 </style>

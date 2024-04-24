@@ -28,7 +28,7 @@
   <div class="content" style="padding-top: 12rem">
     <img src="@/assets/images/start-page/start-page__first.jpg" alt="">
   </div>
-  <img style="max-width:100%" src="@/assets/images/start-page/start-page__second.jpg" alt="">
+  <img style="max-width:90%" src="@/assets/images/start-page/start-page__second.jpg" alt="">
   <div class="content">
     <img src="@/assets/images/start-page/start-page__third.jpg" alt="">
   </div>
@@ -41,9 +41,6 @@
 <style>
 </style>
 <style scoped>
-main {
-
-}
 .button {
   padding: 2rem 2.3rem;
   margin: 0.5rem 0;
@@ -87,11 +84,14 @@ main {
   gap: 2rem;
   margin-bottom: 2rem;
 }
+.inline img:nth-child(1) {
+  max-width: 100%;
+}
+.inline img:nth-child(2) {
+  max-width: 30%;
+}
 .content img {
   width: 100%;
-}
-.inline img {
-  max-width: 100%;
 }
 @media (max-width: 576px) {
   .inline{
