@@ -29,6 +29,13 @@ import Header from "../components/Header.vue";
     <img src="@/assets/images/logo-lg.png" alt="logo">
     </div>
   </div>
+  <footer>
+  <div class="content">
+    <a href="#top"><b>Crespire</b></a>
+    <router-link to="/about">О сайте</router-link>
+    <router-link to="/">Политика конфиденциальности</router-link>
+  </div>
+  </footer>
 </template>
 <style lang="scss" scoped>
 .content {
@@ -56,5 +63,20 @@ import Header from "../components/Header.vue";
   .about-text__logo img {
     min-width: 100%;
   }
+}
+footer {
+  background: #7e2513;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  .content {
+    display: block;
+    margin: 0 auto;
+    padding: 0.3rem 0;
+    a {
+    color: #FFFEF4;
+    margin: 0 0.5rem;
+  }
+  } 
 }
 </style>

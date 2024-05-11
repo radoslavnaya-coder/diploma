@@ -36,20 +36,27 @@
     <img src="@/assets/images/start-page/start-page__four.jpg" alt="">
     <img src="@/assets/images/start-page/start-page__five.jpg" alt="">
   </div>
+  <footer>
+  <div class="content">
+    <a href="#top"><b>Crespire</b></a>
+    <router-link to="/about">О сайте</router-link>
+    <router-link to="/">Политика конфиденциальности</router-link>
+  </div>
+  </footer>
 </template>
 
 <style>
 </style>
-<style scoped>
+<style lang="scss" scoped>
 .button {
   padding: 2rem 2.3rem;
   margin: 0.5rem 0;
   background: url(@/assets/images/main-button-auth.png) no-repeat top left 100%/97%;
-}
-.button p {
+  p {
   position: relative;
   top: -4px;
   font-size: 19px;
+}
 }
 .navigation {
   max-width:100vw;
@@ -61,9 +68,9 @@
 .navigation-box {
   background: #FFFEF4;
   padding: 2rem 0 0.5rem 0;
-}
-.navigation-box .v-col {
+  .v-col {
   padding: 0;
+}
 }
 .about-circle {
   margin: 0;
@@ -83,15 +90,25 @@
   width: 100%;
   gap: 2rem;
   margin-bottom: 2rem;
-}
-.inline img:nth-child(1) {
+  img:nth-child(1) {
   max-width: 100%;
 }
-.inline img:nth-child(2) {
+img:nth-child(2) {
   max-width: 30%;
+}
 }
 .content img {
   width: 100%;
+}
+footer {
+  background: #7e2513;
+  .content {
+    padding: 0.3rem 0;
+    a {
+    color: #FFFEF4;
+    margin: 0 0.5rem;
+  }
+  } 
 }
 @media (max-width: 576px) {
   .inline{

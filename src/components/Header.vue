@@ -13,12 +13,12 @@ import phPlusLight from "./icons/Ph_plus-light.vue";
         <label for="main-search"><MaterialSymbols_searchVue /></label>
       </div>
       <router-link to="/home/add">
-        <div class="button">
+        <div class="button" title="Создать пост">
           <phPlusLight />
         </div>
       </router-link>
       <router-link to="/user/profile">
-        <div class="user-img">
+        <div class="user-img" title="Личный кабинет">
           <img src="@/assets/images/user-img.png" />
         </div>
       </router-link>
@@ -75,7 +75,6 @@ input::-webkit-search-cancel-button {
   }
 }
 .user-img {
-  margin-top: 0.5rem;
   border: 1px solid #7e2513;
   max-width: 65px;
   max-height: 65px;
