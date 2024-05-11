@@ -40,33 +40,39 @@ export default {
       password: "",
       repeatPassword: "",
     });
+
     const sendData = async () => {
-      try {
-        const response = await instance.post(
-          "/register",
-          {
-            name: form.name,
-            email: form.mail,
-            phone: form.phone,
-            password: form.password,
-          },
-          {
-            headers: {
-              "Content-type": "application/json",
+      if (form.password === form.repeatPassword) {
+        try {
+          const response = await instance.post(
+            "/register",
+            {
+              name: form.name,
+              email: form.mail,
+              phone: form.phone,
+              password: form.password,
             },
-          }
-        );
-        form.value = response.data;
-      } catch (err) {
-        throw new Error(err);
+            {
+              headers: {
+                "Content-type": "application/json",
+              },
+            }
+          );
+          form.value = response.data;
+        } catch (err) {
+          throw new Error(err);
+        }
+      }
+      else {
+        throw new Error(err)
       }
     };
     return {
       form,
       sendData,
-    }
-  }
-}
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
