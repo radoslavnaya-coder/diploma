@@ -51,7 +51,7 @@ class AuthorizationController extends Controller
 
     public function login(Request $request)
     {
-        $user = User::where('email', '=', $request->input('email'))->firstOrFail();
+        $user = User::where('name', '=', $request->input('name'))->firstOrFail();
 
         if ($request->input('password') == $user->password) {
             $token = $user->createToken('user_token')->plainTextToken;
