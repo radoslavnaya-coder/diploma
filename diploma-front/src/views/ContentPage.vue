@@ -3,6 +3,7 @@ import Header from "../components/Header.vue";
 </script>
 
 <template>
+  <div>
   <Header />
   <div class="photo-place">
     <div class="back-arrow">
@@ -70,6 +71,7 @@ import Header from "../components/Header.vue";
     <textarea name="comment" cols="30" rows="5"></textarea>
     <button>Оставить комментарий</button>
   </div>
+</div>
 </template>
 
 <style lang="scss" scoped>

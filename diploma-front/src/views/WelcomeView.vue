@@ -46,6 +46,7 @@
         <a href="#top"><b>Crespire</b></a>
         <router-link to="/about">О сайте</router-link>
         <router-link to="/">Политика конфиденциальности</router-link>
+        <router-link to="/">Карта сайта</router-link>
         <router-link to="/">Обратная связь</router-link>
       </div>
     </footer>

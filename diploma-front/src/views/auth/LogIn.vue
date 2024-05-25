@@ -13,9 +13,11 @@
           />Вход
         </div>
         <input v-model="form.name" type="text" placeholder="Логин" />
-        <input v-model="form.password" type="text" placeholder="Пароль" />
+        <input v-model="form.password" type="password" placeholder="Пароль" />
         <button @click.prevent="sendData">Войти</button>
-        <router-link to="/register">Ещё не зарегистрированы? Регистрация</router-link>
+        <router-link to="/register"
+          >Ещё не зарегистрированы? Регистрация</router-link
+        >
       </form>
     </div>
   </div>
@@ -48,6 +50,8 @@ export default {
           }
         );
         form.value = response.data;
+        localStorage.setItem("token", response.data.token);
+        console.log(response.data);
         router.push("/home");
       } catch (err) {
         throw new Error(err);

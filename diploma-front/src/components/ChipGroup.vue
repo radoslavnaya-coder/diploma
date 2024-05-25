@@ -21,34 +21,11 @@ export default {
     onMounted(() => {
     instance.get('/allCategory').then((res) => {
     categories.value = res.data
-    console.log('Data here:', res.data)
     })
     })
     return { categories }
-  },
-  data: () => ({
-    tags: [
-      "Еда",
-      "Своими руками",
-      "Vacation",
-      "Food",
-      "Drawers",
-      "Shopping",
-      "Art",
-      "Tech",
-      "Creative Writing",
-      "Еда",
-      "Своими руками",
-      "Vacation",
-      "Food",
-      "Drawers",
-      "Shopping",
-      "Art",
-      "Tech",
-      "Creative Writing"
-    ],
-  }),
-};
+  }
+}
 </script>
 
 <style lang="scss" scoped>
