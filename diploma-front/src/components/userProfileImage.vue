@@ -48,5 +48,11 @@ export default {
   position: relative;
   z-index: 2;
   line-height: 0;
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    min-width: 190px;
+    min-height: 190px;
+  }
 }
 </style>
