@@ -11,20 +11,60 @@
       </div>
       <div class="category-options">
         <div>
-          <input type="text" placeholder="Название" />
-          <button>Добавить категорию</button>
+          <input v-model="form.name" type="text" placeholder="Название" />
+          <button @click.prevent="sendData()">Добавить категорию</button>
         </div>
-        <ul>
-          <li>Еда</li>
-          <li>Еда</li>
-          <li>Еда</li>
-          <li>Еда</li>
-          <li>Еда</li>
+        <ul
+          v-for="category in categories"
+          :key="category.id"
+          class="outlined-orange"
+          variant="outlined"
+        >
+          <li>{{ category.name }}</li>
         </ul>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import { ref, reactive, onMounted } from "vue";
+import { instance } from "@/components/axios/instance";
+
+export default {
+  setup() {
+    const categories = ref();
+    onMounted(() => {
+      instance.get("/allCategory").then((res) => {
+        categories.value = res.data;
+      });
+    });
+    const form = reactive({
+      name: "",
+    });
+
+    const sendData = async () => {
+      try {
+        const response = await instance.post(
+          "/addCategory",
+          {
+            name: form.name,
+          },
+          {
+            headers: {
+              "Content-type": "application/json",
+            },
+          }
+        );
+        form.value = response.data;
+      } catch (err) {
+        throw new Error(err);
+      }
+    };
+    return { categories, form, sendData };
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 ul {
@@ -91,12 +131,12 @@ ul {
   }
 }
 @keyframes fade {
-    0% {
-      background: #e36238;
-    }
-  
-    50% {
-      background: #7e2513;
-    }
+  0% {
+    background: #e36238;
   }
+
+  50% {
+    background: #7e2513;
+  }
+}
 </style>
