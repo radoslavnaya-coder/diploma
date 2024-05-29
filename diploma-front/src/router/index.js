@@ -5,6 +5,7 @@ import AddView from '@/views/func/AddView.vue'
 import UserProfile from '@/views/user/UserProfile.vue'
 import UserEdit from '@/views/user/UserEdit.vue'
 import ContentPage from '@/views/ContentPage.vue'
+import adminPanel from '@/views/adminPanel.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,6 +14,11 @@ const router = createRouter({
       path: '/home',
       name: 'home',
       component: HomeView,
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: adminPanel
     },
     {
       path: '/home/add',

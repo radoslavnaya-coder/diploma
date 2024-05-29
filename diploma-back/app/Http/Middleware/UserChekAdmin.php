@@ -22,7 +22,7 @@ class UserChekAdmin
         $user_id = $token->tokenable;
         $user_author = User::findOrFail($user_id->id);
 
-        if($user_author[0]->role == '1') {
+        if($user_author->role == '1') {
             return $next($request);
         } else {
             return response()->json([

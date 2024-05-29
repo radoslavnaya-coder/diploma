@@ -28,7 +28,6 @@ class MainController extends Controller
 
 
         $post = Post::create([
-            'text' => $request->text,
             'img' => $file_url,
             'name' => $request->name
         ]);
@@ -52,7 +51,7 @@ class MainController extends Controller
         $arr_key_words = explode(",", $arr_key_words);
 
         for($i = 0; $i < count($arr_key_words); $i++) {
-            DB::insert("INSERT INTO `posts_category` (`id_posts`, `id_words`) VALUES ('$post->id', '$arr_key_words[$i]')");
+            DB::insert("INSERT INTO `posts_key_words` (`id_posts`, `id_words`) VALUES ('$post->id', '$arr_key_words[$i]')");
         }
 
         return 'Запись создана';

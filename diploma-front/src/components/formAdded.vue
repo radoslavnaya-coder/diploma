@@ -1,18 +1,19 @@
 <template>
   <form class="content">
     <div class="photo">
-      <img id="preview" src="@/assets/images/photo-place.jpg" />
-      <button @click.prevent="sendData">Опубликовать</button>
+      <!-- src="@/assets/images/photo-place.jpg" -->
+      <img id="preview" :src="image" />
+      <button @click.prevent="sendData()">Опубликовать</button>
     </div>
     <div>
       <div class="photo-add">
         <label for="photo"
           >Выбрать фото...<input
             ref="file"
+            @change="imagePreview"
             type="file"
             name="photo"
             accept="image/*"
-            @change="handleFileUpload()"
         /></label>
         <p>Загрузить</p>
       </div>
@@ -41,30 +42,35 @@ import { instance } from "@/components/axios/instance";
 
 export default {
   setup() {
+    const image = ref('/src/assets/images/photo-place.jpg')
     const token = localStorage.getItem('token')
     const form = reactive({
       name: "",
     });
-    const file = ref();
+    const file = ref()
 
-    const handleFileUpload = async () => {
-      // debugger;
-      console.log("selected file", file.value.files);
-      //Upload to server
-    };
+    const imagePreview = (e) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        image.value = event.target.result;
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    }
+    
     const sendData = async () => {
+      
       try {
-        //add image here!!
           const response = await instance.post(
             "/addPost",
             {
               name: form.name,
               img: file.value.files[0]
             },
+            console.log(file.value.files[0]),
             {
               headers: {
                 "Content-type": "application/json",
-                Authorization: `Bearer `+ token
+                "Authorization": 'Bearer '+ token
               },
             }
           );
@@ -73,7 +79,7 @@ export default {
           throw new Error(err);
         }
     }
-    return { form, handleFileUpload, file, sendData };
+    return { form, image, file, sendData, imagePreview };
   },
 };
 </script>

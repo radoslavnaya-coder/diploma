@@ -22,11 +22,11 @@ class UserChek
         $user_id = $token->tokenable;
         $user_author = User::findOrFail($user_id->id);
 
-        if($user_author[0]->role == '0') {
+        if($user_author->role == 0) {
             return $next($request);
         } else {
             return response()->json([
-                'message' => "Forbidden for you"
+                'message' => $user_author[0]
             ], 403);
         }
     }

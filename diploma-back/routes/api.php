@@ -26,7 +26,7 @@ Route::get('allPostsWhereCategory', [MainController::class, 'allPostsWhereCatego
 Route::get('allCommentsPost/{id}', [MainController::class, 'allCommentsPost']);
 Route::get('getPost/{id}', [MainController::class, 'getPost']);
 
-Route::middleware(['authUser:sanctum', 'UserCheck' ])->group(function() {
+Route::middleware([ 'UserCheck' ])->group(function() {
     Route::post('addPost', [MainController::class, 'addPost']);
     Route::get('allPostsUser', [MainController::class, 'allPostsUser']);
     Route::put('UpdatedataUser', [MainController::class, 'UpdatedataUser']);

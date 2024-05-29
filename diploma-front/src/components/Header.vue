@@ -5,7 +5,7 @@ import phPlusLight from "./icons/Ph_plus-light.vue";
 <template>
   <header>
     <div class="container">
-      <router-link to="/">
+      <router-link to="/home">
         <img src="@/assets/images/logo.png" width="118" height="86" />
       </router-link>
       <div>
