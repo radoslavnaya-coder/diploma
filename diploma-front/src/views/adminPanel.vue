@@ -33,6 +33,7 @@ import { instance } from "@/components/axios/instance";
 
 export default {
   setup() {
+    const token = localStorage.getItem("token");
     const categories = ref();
     onMounted(() => {
       instance.get("/allCategory").then((res) => {
@@ -53,6 +54,7 @@ export default {
           {
             headers: {
               "Content-type": "application/json",
+              Authorization: "Bearer " + token,
             },
           }
         );

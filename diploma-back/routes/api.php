@@ -38,7 +38,7 @@ Route::middleware([ 'UserCheck' ])->group(function() {
 });
 
 
-Route::middleware(['authUser:sanctum', 'UserCheckAdmin' ])->group(function() {
+Route::middleware([ 'UserCheckAdmin' ])->group(function() {
     Route::post('banUser', [MainController::class, 'banUser']);
     Route::put('updateKeyWords', [MainController::class, 'updateKeyWords']);
     Route::post('addCategory', [MainController::class, 'addCategory']);

@@ -2,12 +2,25 @@
   <div class="user-img content">
     <div class="photo-with-line">
       <div class="user-photo">
-        <img src="@/assets/images/user.jpg" alt="userPhoto" />
+        <img :src="userImage" alt="userPhoto" />
       </div>
     </div>
-    <p>@vilaskas</p>
+    <p>@{{ userName }}</p>
   </div>
 </template>
+
+<script>
+import { ref } from 'vue'
+
+export default {
+  setup() {
+    const userImage = ref('/src/assets/images/user.jpg')
+    const userName = ref('vilaskas')
+    
+    return { userImage, userName }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .user-img {

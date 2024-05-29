@@ -4,6 +4,7 @@ import userProfileImage from "../../components/userProfileImage.vue";
 </script>
 
 <template>
+  <div>
   <Header />
   <div class="back-arrow">
     <img
@@ -21,10 +22,11 @@ import userProfileImage from "../../components/userProfileImage.vue";
   </div>
   <div class="change">
     <div class="nick-add">
-      <input type="text" name="photo" placeholder="@vilaskas" />
+      <input type="text" name="photo" placeholder="vilaskas" />
       <p>Изменить ник</p>
     </div>
   </div>
+</div>
 </template>
 
 <style lang="scss" scoped>

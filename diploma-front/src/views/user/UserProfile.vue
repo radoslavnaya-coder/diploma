@@ -5,22 +5,25 @@ import ImagesGrid from "../../components/imagesGrid.vue";
 </script>
 
 <template>
-  <Header />
-  <div class="user-profile">
-    <userProfileImage />
-  </div>
-  <div class="buttons">
-    <router-link to="/user/edit">Настройки профиля</router-link>
-    <router-link to="/">Выйти</router-link>
-  </div>
-  <div class="content">
-    <h2>Ваши публикации</h2>
-    <ImagesGrid />
+  <div>
+    <Header />
+    <div class="user-profile">
+      <userProfileImage />
+    </div>
+    <div class="buttons">
+      <router-link to="/user/edit">Настройки профиля</router-link>
+      <router-link to="/">Выйти</router-link>
+    </div>
+    <div class="content">
+      <h2>Ваши публикации</h2>
+      <ImagesGrid />
+    </div>
   </div>
 </template>
+
 <style lang="scss" scoped>
 .user-profile {
-    margin: 9.5rem 0 0 0;
+  margin: 9.5rem 0 0 0;
 }
 .content {
   max-width: 1500px;
