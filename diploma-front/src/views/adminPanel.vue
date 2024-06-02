@@ -30,6 +30,7 @@
 <script>
 import { ref, reactive, onMounted } from "vue";
 import { instance } from "@/components/axios/instance";
+import router from "@/router";
 
 export default {
   setup() {
@@ -59,6 +60,7 @@ export default {
           }
         );
         form.value = response.data;
+        router.go(0)
       } catch (err) {
         throw new Error(err);
       }

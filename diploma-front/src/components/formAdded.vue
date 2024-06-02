@@ -19,8 +19,9 @@
       </div>
       <div class="parameters">
         <input v-model="form.name" type="text" placeholder="Название" />
-        <select>
-          <option value="1">Категория</option>
+        <select v-model="form.category">
+          <option value="">Категория</option>
+          <option v-for="category in categories" :key="category" :value="category.id">{{category.name}}</option>
         </select>
         <input type="text" placeholder="Теги для поиска" />
         <div class="tags">
@@ -37,15 +38,22 @@
 </template>
 
 <script>
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { instance } from "@/components/axios/instance";
 
 export default {
   setup() {
     const image = ref('/src/assets/images/photo-place.jpg')
     const token = localStorage.getItem('token')
+    const categories = ref();
+    onMounted(() => {
+      instance.get("/allCategory").then((res) => {
+        categories.value = res.data;
+      });
+    });
     const form = reactive({
       name: "",
+      category: ""
     });
     const file = ref()
 
@@ -70,7 +78,7 @@ export default {
             {
               headers: {
                 "Content-type": "application/json",
-                "Authorization": 'Bearer '+ token
+                Authorization: "Bearer " + token
               },
             }
           );
@@ -79,7 +87,7 @@ export default {
           throw new Error(err);
         }
     }
-    return { form, image, file, sendData, imagePreview };
+    return { form, image, file, sendData, categories, imagePreview };
   },
 };
 </script>
