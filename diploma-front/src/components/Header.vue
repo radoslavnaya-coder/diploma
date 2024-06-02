@@ -1,7 +1,3 @@
-<script setup>
-import MaterialSymbols_searchVue from "./icons/IconSearch.vue";
-import phPlusLight from "./icons/Ph_plus-light.vue";
-</script>
 <template>
   <header>
     <div class="container">
@@ -19,12 +15,31 @@ import phPlusLight from "./icons/Ph_plus-light.vue";
       </router-link>
       <router-link to="/user/profile">
         <div class="user-img" title="Личный кабинет">
-          <img src="@/assets/images/user-img.png" />
+          <img :src="userImage" />
         </div>
       </router-link>
     </div>
   </header>
 </template>
+
+<script>
+import { ref } from "vue";
+import MaterialSymbols_searchVue from "./icons/IconSearch.vue";
+import phPlusLight from "./icons/Ph_plus-light.vue";
+
+export default {
+  components: {
+    MaterialSymbols_searchVue,
+    phPlusLight
+  },
+  setup() {
+    const userImage = ref("/src/assets/images/user-img.jpg");
+
+    return { userImage };
+  },
+};
+</script>
+
 <style lang="scss" scoped>
 header {
   width: 100%;
