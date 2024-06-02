@@ -15,13 +15,19 @@
             name="photo"
             accept="image/*"
         /></label>
-        <p>Загрузить</p>
+        <!-- <p>Загрузить</p> -->
       </div>
       <div class="parameters">
         <input v-model="form.name" type="text" placeholder="Название" />
         <select v-model="form.category">
           <option value="">Категория</option>
-          <option v-for="category in categories" :key="category" :value="category.id">{{category.name}}</option>
+          <option
+            v-for="category in categories"
+            :key="category"
+            :value="category.id"
+          >
+            {{ category.name }}
+          </option>
         </select>
         <input type="text" placeholder="Теги для поиска" />
         <div class="tags">
@@ -43,8 +49,9 @@ import { instance } from "@/components/axios/instance";
 
 export default {
   setup() {
-    const image = ref('/src/assets/images/photo-place.jpg')
-    const token = localStorage.getItem('token')
+    const image = ref("/src/assets/images/photo-place.jpg");
+    const token = localStorage.getItem("token");
+    const keywords = ref([])
     const categories = ref();
     onMounted(() => {
       instance.get("/allCategory").then((res) => {
@@ -53,9 +60,9 @@ export default {
     });
     const form = reactive({
       name: "",
-      category: ""
+      category: "",
     });
-    const file = ref()
+    const file = ref();
 
     const imagePreview = (e) => {
       const reader = new FileReader();
@@ -63,31 +70,30 @@ export default {
         image.value = event.target.result;
       };
       reader.readAsDataURL(e.target.files[0]);
-    }
-    
+    };
+
     const sendData = async () => {
-      
       try {
-          const response = await instance.post(
-            "/addPost",
-            {
-              name: form.name,
-              img: file.value.files[0]
+        const response = await instance.post(
+          "/addPost",
+          {
+            name: form.name,
+            img: file.value.files[0],
+          },
+          console.log(file.value.files[0]),
+          {
+            headers: {
+              "Content-type": "multipart/form-data",
+              Authorization: "Bearer " + token,
             },
-            console.log(file.value.files[0]),
-            {
-              headers: {
-                "Content-type": "application/json",
-                Authorization: "Bearer " + token
-              },
-            }
-          );
-          form.value = response.data;
-        } catch (err) {
-          throw new Error(err);
-        }
-    }
-    return { form, image, file, sendData, categories, imagePreview };
+          }
+        );
+        form.value = response.data;
+      } catch (err) {
+        throw new Error(err);
+      }
+    };
+    return { form, image, file, sendData, keywords, categories, imagePreview };
   },
 };
 </script>
@@ -149,7 +155,7 @@ select {
 .parameters {
   display: flex;
   flex-direction: column;
-  margin: 2rem 0;
+  margin: 1rem 0;
   gap: 1rem;
   input,
   select {
