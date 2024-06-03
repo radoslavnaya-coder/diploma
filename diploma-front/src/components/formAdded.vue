@@ -84,7 +84,7 @@ export default {
           {
             headers: {
               "Content-type": "multipart/form-data",
-              Authorization: "Bearer " + token,
+              "Authorization": "Bearer " + token,
             },
           }
         );
@@ -93,7 +93,7 @@ export default {
         throw new Error(err);
       }
     };
-    return { form, image, file, sendData, keywords, categories, imagePreview };
+    return { form, image, file, keywords, categories, imagePreview, sendData };
   },
 };
 </script>
