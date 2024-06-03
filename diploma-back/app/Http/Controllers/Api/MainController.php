@@ -25,8 +25,6 @@ class MainController extends Controller
         $file_url = "http://127.0.0.1:8000/storage/uploads/" . $time_save . $file->getClientOriginalName();
         $file_url = str_replace(' ', '', $file_url);
 
-
-
         $post = Post::create([
             'img' => $file_url,
             'name' => $request->name
@@ -153,6 +151,12 @@ class MainController extends Controller
         $posts = DB::select("SELECT * FROM `posts`");
 
         return $posts;
+    }
+
+    public function allUsers() {
+        $users = DB::select("SELECT * FROM `users`");
+
+        return $users;
     }
 
     public function allPostsWhereCategory() {

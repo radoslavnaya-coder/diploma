@@ -21,6 +21,7 @@ Route::post('login', [AuthorizationController::class, 'login']);
 
 Route::get('allCategory', [MainController::class, 'allCategory']);
 Route::get('allKeyWords', [MainController::class, 'allKeyWords']);
+Route::get('allUsers', [MainController::class, 'allUsers']);
 Route::get('allPosts', [MainController::class, 'allPosts']);
 Route::get('allPostsWhereCategory', [MainController::class, 'allPostsWhereCategory']);
 Route::get('allCommentsPost/{id}', [MainController::class, 'allCommentsPost']);

@@ -34,6 +34,12 @@ export default {
       name: "",
       password: "",
     });
+    // const user = ref([]);
+    // onMounted(() => {
+    //   instance.get("/allUsers").then((res) => {
+    //     user.value = res.data;
+    //   });
+    // });
 
     const sendData = async () => {
       try {
@@ -50,8 +56,8 @@ export default {
           }
         );
         form.value = response.data;
+
         localStorage.setItem("token", response.data.token);
-        console.log(response.data);
         router.push("/home");
       } catch (err) {
         throw new Error(err);
@@ -59,7 +65,7 @@ export default {
     };
     return {
       form,
-      sendData,
+      sendData
     };
   },
 };
@@ -84,7 +90,7 @@ export default {
 
 .auth-form {
   margin: auto;
-  
+
   form {
     display: flex;
     flex-direction: column;

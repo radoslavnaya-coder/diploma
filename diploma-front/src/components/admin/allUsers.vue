@@ -25,7 +25,7 @@
       const token = localStorage.getItem("token");
       const categories = ref();
       onMounted(() => {
-        instance.get("/allPostsUser").then((res) => {
+        instance.get("/allUsers").then((res) => {
           categories.value = res.data;
         });
       });
