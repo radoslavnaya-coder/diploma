@@ -61,10 +61,10 @@ class MainController extends Controller
         $user_id = $token->tokenable;
         $user = User::findOrFail($user_id->id);
 
-        $allPosts = DB::select("select posts.id as 'post_id', posts.name as 'post_name', posts.text as 'text', posts.img as 'img', GROUP_CONCAT(category.name) as 'category',  
-        GROUP_CONCAT(key_words.name) as 'key_words' FROM posts JOIN alboms_posts on alboms_posts.id_posts = posts.id JOIN alboms on alboms.id = alboms_posts.id_albom JOIN users on users.id = alboms.id_user 
-        JOIN posts_category on posts_category.id_posts = posts.id JOIN category on category.id = posts_category.id_category 
-        JOIN posts_key_words on posts_key_words.id_posts = posts.id JOIN key_words on key_words.id = posts_key_words.id_words and users.id = $user->id");
+        $allPosts = DB::select("select DISTINCT posts.id as 'post_id', posts.name as 'post_name', posts.img as 'img', (select GROUP_CONCAT(category.name) FROM category where category.id = posts_category.id_category ) as 'category',
+        (select GROUP_CONCAT(key_words.name) from key_words WHERE key_words.id = posts_key_words.id_words ) as 'key_words' FROM posts JOIN alboms_posts on alboms_posts.id_posts = posts.id  JOIN alboms on alboms.id = alboms_posts.id_albom  JOIN users on users.id = alboms.id_user 
+         JOIN posts_category on posts_category.id_posts = posts.id
+         JOIN posts_key_words on posts_key_words.id_posts = posts.id and users.id = $user->id");
 
         return $allPosts;
     }

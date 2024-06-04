@@ -1,7 +1,7 @@
 <script setup>
 import Header from "../../components/Header.vue";
 import userProfileImage from "../../components/userProfileImage.vue";
-import ImagesGrid from "../../components/imagesGrid.vue";
+import ImagesGridForUser from "../../components/imagesGridForUser.vue";
 </script>
 
 <template>
@@ -16,7 +16,7 @@ import ImagesGrid from "../../components/imagesGrid.vue";
     </div>
     <div class="content">
       <h2>Ваши публикации</h2>
-      <ImagesGrid />
+      <ImagesGridForUser />
     </div>
   </div>
 </template>
@@ -41,11 +41,12 @@ export default {
           }
         );
         response.data;
+        localStorage.clear()
       } catch (err) {
         throw new Error(err);
       }
     };
-    
+
     return { logout };
   },
 };
