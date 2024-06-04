@@ -51,7 +51,7 @@ export default {
   setup() {
     const image = ref("/src/assets/images/photo-place.jpg");
     const token = localStorage.getItem("token");
-    const keywords = ref([])
+    const keywords = ref([]);
     const categories = ref();
     onMounted(() => {
       instance.get("/allCategory").then((res) => {
@@ -78,7 +78,7 @@ export default {
           "/addPost",
           {
             name: form.name,
-            img: file.value.files[0],
+            file: file.value.files[0],
           },
           console.log(file.value.files[0]),
           {
@@ -88,7 +88,7 @@ export default {
             },
           }
         );
-        form.value = response.data;
+        file.value = response.data;
       } catch (err) {
         throw new Error(err);
       }
@@ -103,19 +103,23 @@ input,
 select {
   outline: none;
 }
+
 .content {
   display: flex;
   justify-content: center;
   margin: 2rem auto;
   gap: 2rem;
 }
+
 .photo {
   display: flex;
   flex-direction: column;
+
   img {
     max-height: 550px;
     max-width: 270px;
   }
+
   button {
     margin: 0.5rem 0;
     padding: 0.5rem;
@@ -123,10 +127,12 @@ select {
     color: white;
   }
 }
+
 .photo-add {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+
   p {
     background: #e36238;
     padding: 0.5rem 2rem;
@@ -134,6 +140,7 @@ select {
     text-align: center;
     cursor: pointer;
   }
+
   input {
     border: #e36238;
     position: absolute;
@@ -144,6 +151,7 @@ select {
     left: 0;
     cursor: pointer;
   }
+
   label {
     border: 1px solid #e36238;
     padding: 0.5rem 1.5rem;
@@ -152,35 +160,42 @@ select {
     cursor: pointer;
   }
 }
+
 .parameters {
   display: flex;
   flex-direction: column;
   margin: 1rem 0;
   gap: 1rem;
+
   input,
   select {
     border: 1px solid #e36238;
     padding: 0.5rem 1.5rem;
     color: #7e2513;
   }
+
   select option {
     background: none;
     color: #7e2513;
   }
 }
+
 .parameters .parameters input::placeholder {
   color: #7e2513;
 }
+
 .tags {
   display: flex;
   flex-wrap: wrap;
   color: #7e2513;
   gap: 1rem;
   max-width: 23rem;
+
   p {
     border: 1px solid #e36238;
     padding: 0.5rem;
   }
+
   p::after {
     content: "x";
     padding-left: 1rem;

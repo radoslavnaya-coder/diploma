@@ -55,11 +55,13 @@ class AuthorizationController extends Controller
 
         if ($request->input('password') == $user->password) {
             $token = $user->createToken('user_token')->plainTextToken;
+            $user_id = $user->id;
 
             return response()->json([
                 'success' => true,
                 'message' => "Success",
-                'token' => $token
+                'token' => $token,
+                'user_id' => $user_id,
             ], 200);
         } else {
             return response()->json([

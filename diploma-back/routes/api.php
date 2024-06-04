@@ -38,7 +38,6 @@ Route::middleware([ 'UserCheck' ])->group(function() {
     Route::post('logout', [AuthorizationController::class, 'logout']);
 });
 
-
 Route::middleware([ 'UserCheckAdmin' ])->group(function() {
     Route::post('banUser', [MainController::class, 'banUser']);
     Route::put('updateKeyWords', [MainController::class, 'updateKeyWords']);

@@ -1,25 +1,35 @@
 <template>
-  <div class="user-img content">
-    <div class="photo-with-line">
-      <div class="user-photo">
-        <img :src="userImage" alt="userPhoto" />
+  <div>
+    <div class="user-img content" v-for="user in users" :key="user">
+      <div class="photo-with-line" v-if="user.id==userId">
+        <div class="user-photo">
+          <img :src="userImage" alt="userPhoto" />
+        </div>
       </div>
+      <p v-if="user.id==userId">@{{ user.name }}</p>
     </div>
-    <p>@{{ userName }}</p>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, onMounted } from "vue";
+import { instance } from "@/components/axios/instance";
 
 export default {
   setup() {
-    const userImage = ref('/src/assets/images/user.jpg')
-    const userName = ref('vilaskas')
-    
-    return { userImage, userName }
-  }
-}
+    const userImage = ref("/src/assets/images/user-img.jpg");
+    const userId = localStorage.getItem("userId");
+
+    const users = ref();
+    onMounted(() => {
+      instance.get("/allUsers").then((res) => {
+        users.value = res.data;
+      });
+    });
+
+    return { userImage, users, userId };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -51,6 +61,7 @@ export default {
   img {
     max-width: 100%;
     max-height: 100%;
+    width: 190px;
     min-width: 190px;
     min-height: 190px;
   }

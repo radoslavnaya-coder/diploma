@@ -12,7 +12,7 @@ import ImagesGrid from "../../components/imagesGrid.vue";
     </div>
     <div class="buttons">
       <router-link to="/user/edit">Настройки профиля</router-link>
-      <router-link to="/">Выйти</router-link>
+      <router-link to="" @click.prevent="logout()">Выйти</router-link>
     </div>
     <div class="content">
       <h2>Ваши публикации</h2>
@@ -20,6 +20,36 @@ import ImagesGrid from "../../components/imagesGrid.vue";
     </div>
   </div>
 </template>
+
+<script>
+import { instance } from "@/components/axios/instance";
+
+export default {
+  setup() {
+    const token = localStorage.getItem("token");
+
+    const logout = async () => {
+      try {
+        const response = await instance.post(
+          "/logout",
+          {},
+          {
+            headers: {
+              "Content-type": "application/json",
+              "Authorization": "Bearer " + token,
+            },
+          }
+        );
+        response.data;
+      } catch (err) {
+        throw new Error(err);
+      }
+    };
+    
+    return { logout };
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 .user-profile {

@@ -29,6 +29,18 @@ import userProfileImage from "../../components/userProfileImage.vue";
 </div>
 </template>
 
+<script>
+import { ref } from 'vue'
+
+export default {
+  setup() {
+    const userName = ref()
+
+    return { userName }
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 .back-arrow {
     max-width: 1170px;

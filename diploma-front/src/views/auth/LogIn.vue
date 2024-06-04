@@ -58,6 +58,7 @@ export default {
         form.value = response.data;
 
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userId", response.data.user_id);
         router.push("/home");
       } catch (err) {
         throw new Error(err);
