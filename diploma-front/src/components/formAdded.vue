@@ -74,13 +74,12 @@ export default {
 
     const sendData = async () => {
       try {
-        const response = await instance.post(
-          "/addPost",
-          {
-            name: form.name,
-            file: file.value.files[0],
-          },
-          console.log(file.value.files[0]),
+        const formData = new FormData(); // создаем объект FormData для передачи файла
+        formData.append('file', file.value.files[0]); // добавляем файл в объект FormData
+        formData.append('name', "321321312"); // добавляем файл в объект FormData
+        formData.append('category', "1"); // добавляем файл в объект FormData
+        formData.append('key_words', "1"); // добавляем файл в объект FormData
+        instance.post("/addPost", formData,
           {
             headers: {
               "Content-type": "multipart/form-data",
@@ -88,7 +87,6 @@ export default {
             },
           }
         );
-        file.value = response.data;
       } catch (err) {
         throw new Error(err);
       }
