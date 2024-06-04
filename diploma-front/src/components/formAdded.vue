@@ -46,6 +46,7 @@
 <script>
 import { ref, reactive, onMounted } from "vue";
 import { instance } from "@/components/axios/instance";
+import router from "@/router";
 
 export default {
   setup() {
@@ -74,19 +75,18 @@ export default {
 
     const sendData = async () => {
       try {
-        const formData = new FormData(); // создаем объект FormData для передачи файла
-        formData.append('file', file.value.files[0]); // добавляем файл в объект FormData
-        formData.append('name', "321321312"); // добавляем файл в объект FormData
-        formData.append('category', "1"); // добавляем файл в объект FormData
-        formData.append('key_words', "1"); // добавляем файл в объект FormData
-        instance.post("/addPost", formData,
-          {
-            headers: {
-              "Content-type": "multipart/form-data",
-              "Authorization": "Bearer " + token,
-            },
-          }
-        );
+        const formData = new FormData();
+        formData.append("file", file.value.files[0]);
+        formData.append("name", form.name);
+        formData.append("category", form.category);
+        formData.append("key_words", "1");
+        instance.post("/addPost", formData, {
+          headers: {
+            "Content-type": "multipart/form-data",
+            Authorization: "Bearer " + token,
+          },
+        });
+        router.push("/home");
       } catch (err) {
         throw new Error(err);
       }
