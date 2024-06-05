@@ -39,14 +39,9 @@
             {{ keyword.name }}
           </option>
         </select>
-        <div class="tags">
-          <p>Многогранность</p>
-          <p>Дизайн</p>
-          <p>Радость</p>
-          <p>Многогранность</p>
-          <p>Дизайн</p>
-          <p>Радость</p>
-        </div>
+        <!-- <div class="tags" v-for="word in form.keywords" :key="word">
+          <p>{{ word }}</p>
+        </div> -->
       </div>
     </div>
   </form>
