@@ -159,8 +159,8 @@ class MainController extends Controller
         return $users;
     }
 
-    public function allPostsWhereCategory() {
-        $posts = DB::select("SELECT posts.* FROM posts JOIN posts_category on posts_category.id_posts = posts.id and posts_category.id_category = 1");
+    public function allPostsWhereCategory(Request $request) {
+        $posts = DB::select("SELECT posts.* FROM posts JOIN posts_category on posts_category.id_posts = posts.id and posts_category.id_category = $request->category_id");
 
         return $posts;
     }
