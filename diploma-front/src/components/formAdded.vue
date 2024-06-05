@@ -29,7 +29,16 @@
             {{ category.name }}
           </option>
         </select>
-        <input type="text" placeholder="Теги для поиска" />
+        <select v-model="form.keywords">
+          <option value="">Теги для поиска</option>
+          <option
+            v-for="keyword in keywords"
+            :key="keyword"
+            :value="keyword.id"
+          >
+            {{ keyword.name }}
+          </option>
+        </select>
         <div class="tags">
           <p>Многогранность</p>
           <p>Дизайн</p>
@@ -52,16 +61,20 @@ export default {
   setup() {
     const image = ref("/src/assets/images/photo-place.jpg");
     const token = localStorage.getItem("token");
-    const keywords = ref([]);
+    const keywords = ref();
     const categories = ref();
     onMounted(() => {
       instance.get("/allCategory").then((res) => {
         categories.value = res.data;
       });
+      instance.get("/allKeyWords").then((res) => {
+        keywords.value = res.data;
+      });
     });
     const form = reactive({
       name: "",
       category: "",
+      keywords: "",
     });
     const file = ref();
 
@@ -79,7 +92,7 @@ export default {
         formData.append("file", file.value.files[0]);
         formData.append("name", form.name);
         formData.append("category", form.category);
-        formData.append("key_words", "1");
+        formData.append("key_words", form.keywords);
         instance.post("/addPost", formData, {
           headers: {
             "Content-type": "multipart/form-data",
