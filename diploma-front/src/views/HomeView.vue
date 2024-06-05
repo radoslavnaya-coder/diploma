@@ -4,6 +4,7 @@
     <main>
       <Chip />
       <ImagesGrid />
+      <ImagesGridForCategory />
     </main>
   </div>
 </template>
@@ -11,6 +12,7 @@
 <script>
 import Header from "../components/Header.vue";
 import ImagesGrid from "../components/imagesGrid.vue";
+import ImagesGridForCategory from "../components/imagesGridForCategory.vue";
 import Chip from "../components/ChipGroup.vue";
 import router from "@/router";
 
@@ -18,6 +20,7 @@ export default {
   components: {
     Header,
     ImagesGrid,
+    ImagesGridForCategory,
     Chip,
   },
   setup() {
