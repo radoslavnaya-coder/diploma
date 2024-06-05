@@ -1,9 +1,7 @@
-<script setup>
-import Header from "../components/Header.vue";
-</script>
 <template>
   <div>
-    <Header />
+    <welcomeHeader v-if="userId == null" />
+    <Header v-if="userId != null" />
     <div class="content">
       <div>
         <h1>О сайте</h1>
@@ -42,12 +40,30 @@ import Header from "../components/Header.vue";
     </footer>
   </div>
 </template>
+
+<script>
+import welcomeHeader from "../components/welcomeHeader.vue";
+import Header from "../components/Header.vue";
+
+export default {
+  components: {
+    welcomeHeader,
+    Header
+  },
+  setup() {
+    const userId = localStorage.getItem('userId')
+
+    return { userId }
+  }
+};
+</script>
+
 <style lang="scss" scoped>
 .content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 2rem auto;
+  margin: 4rem auto;
   color: #7e2513;
   h1 {
     font-weight: 400;

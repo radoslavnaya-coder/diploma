@@ -2,6 +2,16 @@
 import Header from "../../components/Header.vue";
 import userProfileImage from "../../components/userProfileImage.vue";
 import ImagesGridForUser from "../../components/imagesGridForUser.vue";
+import router from "@/router";
+
+function logout() {
+  localStorage.clear();
+  router.push("/");
+}
+const token = localStorage.getItem("token");
+if (token == null) {
+  router.push("/");
+}
 </script>
 
 <template>
@@ -20,37 +30,6 @@ import ImagesGridForUser from "../../components/imagesGridForUser.vue";
     </div>
   </div>
 </template>
-
-<script>
-import { instance } from "@/components/axios/instance";
-
-export default {
-  setup() {
-    const token = localStorage.getItem("token");
-
-    const logout = async () => {
-      try {
-        const response = await instance.post(
-          "/logout",
-          {},
-          {
-            headers: {
-              "Content-type": "application/json",
-              "Authorization": "Bearer " + token,
-            },
-          }
-        );
-        response.data;
-        localStorage.clear()
-      } catch (err) {
-        throw new Error(err);
-      }
-    };
-
-    return { logout };
-  },
-};
-</script>
 
 <style lang="scss" scoped>
 .user-profile {

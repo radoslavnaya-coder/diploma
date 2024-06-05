@@ -1,6 +1,12 @@
 <script setup>
 import Header from "../../components/Header.vue";
 import userProfileImage from "../../components/userProfileImage.vue";
+import router from "@/router";
+
+const token = localStorage.getItem("token");
+if (token == null) {
+  router.push("/");
+}
 </script>
 
 <template>

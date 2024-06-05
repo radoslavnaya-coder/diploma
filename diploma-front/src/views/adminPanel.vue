@@ -20,6 +20,7 @@
 import addCategory from "@/components/admin/addCategory.vue";
 import addKeywords from "@/components/admin/addKeywords.vue";
 import allUsers from "@/components/admin/allUsers.vue"
+import router from "@/router";
 
 export default {
   components: {
@@ -27,6 +28,12 @@ export default {
     addKeywords,
     allUsers
   },
+  setup() {
+    const adminId = localStorage.getItem('userId')
+    if (adminId != 18) {
+      router.push('/')
+    }
+  }
 };
 </script>
 

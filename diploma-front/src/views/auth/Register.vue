@@ -60,7 +60,7 @@ export default {
             }
           );
           form.value = response.data;
-          router.push("/home");
+          await router.push("/login");
         } catch (err) {
           throw new Error(err);
         }

@@ -73,7 +73,6 @@ class AuthorizationController extends Controller
 
     public function logout(Request $request)
     {
-
             $yourToken = request()->bearerToken();
             $token = \Laravel\Sanctum\PersonalAccessToken::findToken($yourToken);
 
