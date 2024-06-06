@@ -12,6 +12,8 @@ import * as directives from 'vuetify/directives'
 import MasonryWall from '@yeger/vue-masonry-wall'
 //axios
 import axios from 'axios'
+//recaptcha
+import { VueReCaptcha } from 'vue-recaptcha-v3'
 
 const vuetify = createVuetify({
   components,
@@ -24,6 +26,12 @@ app.use(router)
 app.use(vuetify)
 app.use(MasonryWall)
 app.use(axios)
+app.use(VueReCaptcha, {
+  siteKey: '6LewlPIpAAAAAEtkvHLRWPCDPRl0oicbbJwOXmHg',
+  loaderOptions: {
+    useRecaptchaNet: true
+  }
+})
 
 app.mount('#app')
 

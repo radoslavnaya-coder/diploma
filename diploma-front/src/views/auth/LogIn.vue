@@ -34,13 +34,6 @@ export default {
       name: "",
       password: "",
     });
-    // const user = ref([]);
-    // onMounted(() => {
-    //   instance.get("/allUsers").then((res) => {
-    //     user.value = res.data;
-    //   });
-    // });
-
     const sendData = async () => {
       try {
         const response = await instance.post(
@@ -66,7 +59,7 @@ export default {
     };
     return {
       form,
-      sendData
+      sendData,
     };
   },
 };

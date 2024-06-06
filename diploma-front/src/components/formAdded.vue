@@ -29,7 +29,7 @@
             {{ category.name }}
           </option>
         </select>
-        <select v-model="form.keywords">
+        <!-- <select v-model="form.keywords">
           <option value="">Теги для поиска</option>
           <option
             v-for="keyword in keywords"
@@ -38,7 +38,7 @@
           >
             {{ keyword.name }}
           </option>
-        </select>
+        </select> -->
         <!-- <div class="tags" v-for="word in form.keywords" :key="word">
           <p>{{ word }}</p>
         </div> -->

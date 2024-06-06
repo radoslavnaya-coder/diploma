@@ -12,6 +12,7 @@
     "@yeger/vue-masonry-wall": "^5.0.8",
     "axios": "^1.6.8",
     "vue-images-loaded": "^1.1.2",
+    "vue-recaptcha-v3": "^2.0.1",
     "vue-router": "^4.2.5",
     "vuetify": "^3.5.6"
   },

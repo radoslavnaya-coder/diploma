@@ -5,7 +5,7 @@
     </div>
     <div class="auth-form">
       <form>
-        <div @click="$router.back()">
+        <div class="arrow" @click="$router.back()">
           <img
             src="@/assets/images/auth/auth-arrow.svg"
             alt="Назад"
@@ -20,6 +20,18 @@
           type="password"
           placeholder="Повторение пароля"
         />
+        <div class="checkbox-wrapper-21">
+          <label class="control control--checkbox">
+            Согласен с политикой конфиденциальности
+            <input
+              v-model="form.isAgree"
+              :true-value="1"
+              :false-value="0"
+              type="checkbox"
+            />
+            <div class="control__indicator"></div>
+          </label>
+        </div>
         <button @click.prevent="sendData">Зарегистрироваться</button>
         <router-link to="/login">Уже зарегистрированы? Войти</router-link>
       </form>
@@ -40,10 +52,11 @@ export default {
       phone: "",
       password: "",
       repeatPassword: "",
+      isAgree: "",
     });
 
     const sendData = async () => {
-      if (form.password === form.repeatPassword) {
+      if (form.password === form.repeatPassword && form.isAgree === 1) {
         try {
           const response = await instance.post(
             "/register",
@@ -64,9 +77,8 @@ export default {
         } catch (err) {
           throw new Error(err);
         }
-      }
-      else {
-        throw new Error(err)
+      } else {
+        throw new Error(err);
       }
     };
     return {
@@ -148,7 +160,7 @@ export default {
   }
 }
 
-form div {
+.arrow {
   display: flex;
   align-items: center;
   color: #7e2513;
@@ -160,6 +172,59 @@ form div {
     cursor: pointer;
   }
 }
+
+/* checkbox */
+.checkbox-wrapper-21 .control {
+  color: #7e2513;
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.checkbox-wrapper-21 .control input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.checkbox-wrapper-21 .control__indicator {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border: 1px solid #e36238;
+  background: none;
+}
+.checkbox-wrapper-21 .control input:disabled ~ .control__indicator {
+  background: #e6e6e6;
+  opacity: 0.6;
+  pointer-events: none;
+}
+.checkbox-wrapper-21 .control__indicator:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.checkbox-wrapper-21 .control input:checked ~ .control__indicator:after {
+  display: block;
+}
+.checkbox-wrapper-21 .control--checkbox .control__indicator:after {
+  left: 6.5px;
+  top: 1px;
+  width: 6px;
+  height: 12px;
+  border: solid #7e2513;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.checkbox-wrapper-21
+  .control--checkbox
+  input:disabled
+  ~ .control__indicator:after {
+  border-color: #7b7b7b;
+}
+/* end checkbox */
 
 @keyframes fade {
   0% {
