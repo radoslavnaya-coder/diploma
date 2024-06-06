@@ -1,0 +1,33 @@
+$tablets: 992px;
+$tablets-sm: 768px;
+$phones: 576px;
+
+@mixin font-size($normal, $medium, $small) {
+  font-size: $normal;
+
+  @media screen and (max-width: $tablets) {
+    font-size: $medium;
+  }
+
+  @media screen and (max-width: $phones) {
+    font-size: $small;
+  }
+}
+
+@mixin tablets {
+  @media screen and (max-width: $tablets) {
+    @content;
+  }
+}
+
+@mixin tablets-sm {
+  @media screen and (max-width: $tablets-sm) {
+    @content;
+  }
+}
+
+@mixin phones {
+  @media screen and (max-width: $phones) {
+    @content;
+  }
+}

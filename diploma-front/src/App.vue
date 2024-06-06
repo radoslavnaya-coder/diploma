@@ -8,6 +8,7 @@ import { RouterView } from "vue-router";
   </div>
 </template>
 
-<style scoped>
+<style  lang="scss" scoped>
 @import "./assets/main.css";
+@import "./assets/scss/mixins.scss";
 </style>
