@@ -86,18 +86,31 @@ class MainController extends Controller
 
         $name = $request->name;
 
-        DB::update("UPDATE `users` SET `name`='$name', `img`='$file_url' WHERE users.id = $user->id ");
+        DB::update("UPDATE `users` SET `img`='$file_url' WHERE users.id = $user->id ");
+        
+        return 'Обновили данные';
+    }
+
+    public function updateUserName(Request $request) {
+        $yourToken = request()->bearerToken();
+        $token = \Laravel\Sanctum\PersonalAccessToken::findToken($yourToken);
+        $user_id = $token->tokenable;
+        $user = User::findOrFail($user_id->id);
+
+        $name = $request->name;
+
+        DB::update("UPDATE `users` SET `name`='$name' WHERE users.id = $user->id ");
 
         return 'Обновили данные';
     }
 
-    public function deletePost(Request $request, $id){
+    public function deletePost(Request $request, $id) {
         DB::delete("DELETE FROM `posts` WHERE posts.id = $id");
 
         return 'Пост удалён';
     }
 
-    public function ipdatePost(Request $request, $id){
+    public function ipdatePost(Request $request, $id) {
 
         $file = $request->file;
         $time_save = time();

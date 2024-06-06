@@ -15,7 +15,14 @@
       </router-link>
       <router-link to="/user/profile">
         <div class="user-img" title="Личный кабинет">
-          <img :src="userImage" />
+          <div v-for="user in users" :key="user">
+            <div v-if="user.id == userId">
+              <div>
+                <img v-if="user.img == null" :src="userImage" alt="userPhoto" />
+                <img v-else :src="user.img" alt="userPhoto" />
+              </div>
+            </div>
+          </div>
         </div>
       </router-link>
     </div>
@@ -23,19 +30,29 @@
 </template>
 
 <script>
-import { ref } from "vue";
 import MaterialSymbols_searchVue from "./icons/IconSearch.vue";
 import phPlusLight from "./icons/Ph_plus-light.vue";
+import { ref, onMounted } from "vue";
+import { instance } from "@/components/axios/instance";
 
 export default {
   components: {
     MaterialSymbols_searchVue,
-    phPlusLight
+    phPlusLight,
   },
   setup() {
     const userImage = ref("/src/assets/images/user-img.jpg");
+    const userId = localStorage.getItem("userId");
 
-    return { userImage };
+    const users = ref();
+    onMounted(() => {
+      instance.get("/allUsers").then((res) => {
+        users.value = res.data;
+      });
+    });
+
+    const userImg = ref("/src/assets/images/user-img.jpg");
+    return { userImage, userImg, users, userId };
   },
 };
 </script>

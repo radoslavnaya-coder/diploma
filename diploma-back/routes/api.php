@@ -30,7 +30,8 @@ Route::get('getPost/{id}', [MainController::class, 'getPost']);
 Route::middleware([ 'UserCheck' ])->group(function() {
     Route::post('addPost', [MainController::class, 'addPost']);
     Route::get('allPostsUser', [MainController::class, 'allPostsUser']);
-    Route::put('UpdatedataUser', [MainController::class, 'UpdatedataUser']);
+    Route::post('UpdatedataUser', [MainController::class, 'UpdatedataUser']);
+    Route::put('updateUserName', [MainController::class, 'updateUserName']);
     Route::delete('deletePost/{id}', [MainController::class, 'deletePost']);
     Route::put('ipdatePost/{id}', [MainController::class, 'ipdatePost']);
     Route::post('addComments', [MainController::class, 'addComments']);

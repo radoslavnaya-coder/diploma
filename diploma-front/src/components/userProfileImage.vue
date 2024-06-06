@@ -1,12 +1,13 @@
 <template>
   <div>
     <div class="user-img content" v-for="user in users" :key="user">
-      <div class="photo-with-line" v-if="user.id==userId">
+      <div class="photo-with-line" v-if="user.id == userId">
         <div class="user-photo">
-          <img :src="userImage" alt="userPhoto" />
+          <img v-if="user.img == null" :src="userImage" alt="userPhoto" />
+          <img v-else :src="user.img" alt="userPhoto" />
         </div>
       </div>
-      <p v-if="user.id==userId">@{{ user.name }}</p>
+      <p v-if="user.id == userId">@{{ user.name }}</p>
     </div>
   </div>
 </template>

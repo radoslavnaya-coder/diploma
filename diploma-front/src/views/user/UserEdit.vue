@@ -1,56 +1,104 @@
-<script setup>
-import Header from "../../components/Header.vue";
-import userProfileImage from "../../components/userProfileImage.vue";
-import router from "@/router";
-
-const token = localStorage.getItem("token");
-if (token == null) {
-  router.push("/");
-}
-</script>
-
 <template>
   <div>
-  <Header />
-  <div class="back-arrow">
-    <img
-      @click="$router.back()"
-      src="@/assets/images/auth/auth-arrow.svg"
-      alt="Назад"
-    />
-  </div>
-  <userProfileImage />
-  <div class="change">
-    <div class="photo-add">
-      <label for="photo">Выбрать фото<input type="file" name="photo" /></label>
-      <p>Загрузить</p>
+    <Header />
+    <div class="back-arrow">
+      <img
+        @click="$router.back()"
+        src="@/assets/images/auth/auth-arrow.svg"
+        alt="Назад"
+      />
+    </div>
+    <userProfileImage />
+    <div class="change">
+      <div class="photo-add">
+        <label for="photo">
+          Выбрать фото
+          <input ref="file" @change="selectFile" type="file" name="photo" accept="image/*"
+        /></label>
+        <p @click.prevent="updateImage()">Изменить фото</p>
+      </div>
+    </div>
+    <div class="change">
+      <div class="nick-add">
+        <input
+          v-model="form.name"
+          type="text"
+          name="photo"
+          placeholder="Новый логин"
+        />
+        <p @click.prevent="updateName()">Изменить логин</p>
+      </div>
     </div>
   </div>
-  <div class="change">
-    <div class="nick-add">
-      <input type="text" name="photo" placeholder="vilaskas" />
-      <p>Изменить ник</p>
-    </div>
-  </div>
-</div>
 </template>
 
 <script>
-import { ref } from 'vue'
+import Header from "../../components/Header.vue";
+import userProfileImage from "../../components/userProfileImage.vue";
+import router from "@/router";
+import { ref, reactive } from "vue";
+import { instance } from "@/components/axios/instance";
 
 export default {
+  components: {
+    Header,
+    userProfileImage,
+  },
   setup() {
-    const userName = ref()
+    const token = localStorage.getItem("token");
+    const file = ref();
+    
+    const form = reactive({
+      name: "",
+    });
+    const selectFile = () => {
+      console.log(file.value.files[0]);
+    }
+    const updateName = async () => {
+      try {
+        const response = await instance.put(
+          "/updateUserName",
+          {
+            name: form.name,
+          },
+          {
+            headers: {
+              "Content-type": "application/json",
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        form.value = response.data;
+        router.go(0);
+      } catch (err) {
+        throw new Error(err);
+      }
+    };
+    const updateImage = async () => {
+      try {
+        const formData = new FormData();
+        formData.append("file", file.value.files[0]);
+        instance.post("/UpdatedataUser", formData, {
+          headers: {
+            "Content-type": "multipart/form-data",
+            Authorization: "Bearer " + token,
+          },
+        });
+        // router.go(0);
+      } catch (err) {
+        throw new Error(err);
+      }
+    };
 
-    return { userName }
-  }
-}
+    return { file, form, updateName, updateImage, selectFile };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 .back-arrow {
-    max-width: 1170px;
-    margin: 4rem auto;
+  max-width: 1170px;
+  margin: 4rem auto;
 }
 .change {
   max-width: 500px;
