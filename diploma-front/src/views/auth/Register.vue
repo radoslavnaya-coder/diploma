@@ -11,15 +11,21 @@
             alt="Назад"
           />Регистрация
         </div>
-        <input v-model="form.name" type="text" placeholder="Логин" />
-        <input v-model="form.mail" type="email" placeholder="E-mail" />
-        <input v-model="form.phone" type="tel" placeholder="+7(999)999-99-99" />
-        <input v-model="form.password" type="password" placeholder="Пароль" />
+        <input  v-model="form.name" type="text" placeholder="Логин" :class="[{ error: v$.name.$error },{ notError: !v$.name.$error}]" />
+        <small v-if="v$.name.$error">Логин должен быть не меньше 3 букв</small>
+        <input v-model="form.mail" type="email" placeholder="E-mail" :class="[{ error: v$.mail.$error },{ notError: !v$.mail.$error}]" />
+        <small v-if="v$.mail.$error">Ошибка в написании почты</small>
+        <input v-model="form.phone" type="tel" placeholder="+7(999)999-99-99" :class="[{ error: v$.phone.$error },{ notError: !v$.phone.$error}]" />
+        <small v-if="v$.phone.$error">Неправильный формат номера</small>
+        <input v-model="form.password" type="password" placeholder="Пароль" :class="[{ error: v$.password.$error },{ notError: !v$.password.$error}]" />
+        <small v-if="v$.password.$error">Пароль должен содержать не менее 6 знаков, используйте цифры и буквы</small>
         <input
           v-model="form.repeatPassword"
           type="password"
           placeholder="Повторение пароля"
+          :class="[{ error: v$.repeatPassword.$error },{ notError: !v$.repeatPassword.$error}]"
         />
+        <small v-if="v$.repeatPassword.$error">Пароли не совпадают</small>
         <div class="checkbox-wrapper-21">
           <label class="control control--checkbox">
             Согласен с политикой конфиденциальности
@@ -31,6 +37,7 @@
             />
             <div class="control__indicator"></div>
           </label>
+          <small v-if="v$.isAgree.$error" :class="{ agreeError: v$.isAgree.$error }">Подтвердите согласие с политикой конфиденциальности</small>
         </div>
         <button @click.prevent="sendData">Зарегистрироваться</button>
         <router-link to="/login">Уже зарегистрированы? Войти</router-link>
@@ -40,12 +47,15 @@
 </template>
 
 <script>
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import { instance } from "@/components/axios/instance";
 import router from "@/router";
+import { useVuelidate } from "@vuelidate/core";
+import { required, minLength, email, numeric, alphaNum, sameAs } from "@vuelidate/validators";
 
 export default {
   setup() {
+    const error = ref(false);
     const form = reactive({
       name: "",
       mail: "",
@@ -54,8 +64,22 @@ export default {
       repeatPassword: "",
       isAgree: "",
     });
+    const rules = {
+      name: { required, minLength: minLength(3) },
+      password: { required, alphaNum, minLength: minLength(6) },
+      mail: { required, email },
+      phone: { required, numeric },
+      repeatPassword: { required },
+      isAgree: { sameAs: sameAs(1)}
+    };
+    const v$ = useVuelidate(rules, form);
 
     const sendData = async () => {
+      v$.value.$touch();
+      if (v$.value.$error) {
+        error.value = true;
+        return;
+      }
       if (form.password === form.repeatPassword && form.isAgree === 1) {
         try {
           const response = await instance.post(
@@ -84,6 +108,8 @@ export default {
     return {
       form,
       sendData,
+      v$,
+      error
     };
   },
 };
@@ -130,11 +156,25 @@ export default {
     padding: 0.5rem 1.5rem 0.5rem 1.5rem;
   }
 
+  small {
+    color: #7e2513;
+  }
+
   input {
     border: 1px solid #e36238;
     color: #7e2513;
   }
-
+/* validate */
+  .error {
+    outline: 1px solid red;
+  }
+  .notError:focus{
+    border: 1px solid #A9DC4F;
+  }
+  .agreeError {
+    color: red;
+  }
+/* end validate */
   input::placeholder {
     color: #7e251380;
   }
