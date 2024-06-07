@@ -13,42 +13,33 @@
           теги для поиска.
         </p>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
-          obcaecati at perferendis possimus doloremque reprehenderit saepe
-          mollitia ipsum. Quisquam provident, impedit voluptas perferendis iste
-          consectetur reprehenderit dignissimos repellendus perspiciatis
-          necessitatibus?
+          Для того чтобы зарегистрироваться или авторизоваться, необходимо нажать на кнопку «Войти» в правом верхнем углу экрана.
         </p>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
-          obcaecati at perferendis possimus doloremque reprehenderit saepe
-          mollitia ipsum. Quisquam provident, impedit voluptas perferendis iste
-          consectetur reprehenderit dignissimos repellendus perspiciatis
-          necessitatibus?
+          При появлении ошибок и возникновении пожеланий просьба использовать ссылку обратной связи внизу экрана.
+        </p>
+        <p>
+          Доброго вам времени суток!
         </p>
       </div>
       <div class="about-text__logo">
         <img src="@/assets/images/logo-lg.png" alt="logo" />
       </div>
     </div>
-    <footer>
-      <div class="content">
-        <a href="#top"><b>Crespire</b></a>
-        <router-link to="/about">О сайте</router-link>
-        <router-link to="/">Политика конфиденциальности</router-link>
-      </div>
-    </footer>
+    <Footer />
   </div>
 </template>
 
 <script>
 import welcomeHeader from "../components/welcomeHeader.vue";
 import Header from "../components/Header.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   components: {
     welcomeHeader,
-    Header
+    Header,
+    Footer
   },
   setup() {
     const userId = localStorage.getItem('userId')
@@ -84,20 +75,21 @@ export default {
   .about-text__logo img {
     min-width: 100%;
   }
+  @media (max-width: 768px) {
+    p{
+      padding: 1rem;
+    }
+    .about-text {
+      padding: 1.5rem;
+    }
+  }
 }
 footer {
-  background: #7e2513;
   position: absolute;
   bottom: 0;
   width: 100%;
-  .content {
-    display: block;
-    margin: 0 auto;
-    padding: 0.3rem 0;
-    a {
-      color: #fffef4;
-      margin: 0 0.5rem;
-    }
+  @media (max-width: 865px) {
+    position: initial;
   }
 }
 </style>

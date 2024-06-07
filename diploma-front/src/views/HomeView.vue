@@ -77,7 +77,13 @@ export default {
 <style lang="scss" scoped>
 main {
   width: 100vw;
-  padding: 1rem 12rem 2rem 14rem;
+  padding: 1rem 12rem 2rem 12rem;
+  @media (max-width:1500px) {
+    padding: 1rem 5rem 2rem 5rem;
+  }
+  @media (max-width: 576px) {
+    padding: 1rem;
+  }
 }
 .v-chip {
   border-radius: 0 !important;
@@ -94,6 +100,11 @@ main {
   background: none;
   border: 1px solid #e36238;
   color: #7e2513;
+}
+.outlined-orange * {
+  @media (max-width: 576px) {
+    font-size: 14px;
+  }
 }
 </style>
 

@@ -17,48 +17,32 @@
       <img src="@/assets/images/start-page/start-page__four.jpg" alt="" />
       <img src="@/assets/images/start-page/start-page__five.jpg" alt="" />
     </div>
-    <footer>
-      <div class="content">
-        <a href="#top"><b>Crespire</b></a>
-        <router-link to="/about">О сайте</router-link>
-        <router-link to="/">Политика конфиденциальности</router-link>
-        <router-link to="/">Карта сайта</router-link>
-        <router-link to="/">Обратная связь</router-link>
-      </div>
-    </footer>
+    <Footer />
   </div>
 </template>
 
 <script>
 import welcomeHeader from "../components/welcomeHeader.vue";
 import Header from "../components/Header.vue";
+import Footer from "../components/Footer.vue";
 
 export default {
   components: {
     welcomeHeader,
-    Header
+    Header,
+    Footer,
   },
   setup() {
-    const userId = localStorage.getItem('userId')
+    const userId = localStorage.getItem("userId");
 
-    return { userId }
-  }
+    return { userId };
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .content img {
-  width: 100%;
-}
-footer {
-  background: #7e2513;
-  .content {
-    padding: 0.3rem 0;
-    a {
-      color: #fffef4;
-      margin: 0 0.5rem;
-    }
-  }
+  max-width: 100%;
 }
 .inline {
   display: inline-flex;
@@ -68,15 +52,10 @@ footer {
   gap: 2rem;
   margin-bottom: 2rem;
   img:nth-child(1) {
-    max-width: 100%;
+    max-width: 50%;
   }
   img:nth-child(2) {
     max-width: 30%;
-  }
-}
-@media (max-width: 576px) {
-  .inline {
-    flex-direction: column;
   }
 }
 </style>

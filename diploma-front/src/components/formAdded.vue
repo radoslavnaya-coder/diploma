@@ -115,6 +115,10 @@ select {
   justify-content: center;
   margin: 2rem auto;
   gap: 2rem;
+  @media (max-width: 768px) {
+    margin: 2rem 1rem;
+    flex-direction: column-reverse;
+  }
 }
 
 .photo {
@@ -131,6 +135,9 @@ select {
     padding: 0.5rem;
     background: #e36238;
     color: white;
+    @media (max-width: 768px) {
+      max-width: 90%;
+    }
   }
 }
 
@@ -172,7 +179,9 @@ select {
   flex-direction: column;
   margin: 1rem 0;
   gap: 1rem;
-
+  @media (max-width: 768px) {
+    max-width: 90%;
+  }
   input,
   select {
     border: 1px solid #e36238;

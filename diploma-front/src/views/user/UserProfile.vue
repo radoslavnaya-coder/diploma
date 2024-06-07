@@ -51,6 +51,10 @@ if (token == null) {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+    margin: 2rem 1rem 6rem 1rem;
+  }
   a {
     padding: 0.5rem 0;
     font-size: 18px;

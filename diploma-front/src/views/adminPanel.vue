@@ -72,6 +72,10 @@ ul {
     display: flex;
     flex-direction: column;
     gap: 0.1rem;
+    @media (max-width: 992px) {
+      position: relative;
+      margin-bottom: 2rem;
+    }
     li {
       cursor: pointer;
       padding: 0.8rem 2rem;

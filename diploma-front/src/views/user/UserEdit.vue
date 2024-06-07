@@ -99,6 +99,9 @@ export default {
 .back-arrow {
   max-width: 1170px;
   margin: 4rem auto;
+  @media (max-width: 1180px) {
+    margin: 4rem 1rem;
+  }
 }
 .change {
   max-width: 500px;
@@ -109,6 +112,10 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+    margin: 0 1rem;
+  }
   p {
     background: #e36238;
     padding: 0.5rem 2rem;
@@ -139,6 +146,10 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+    margin: 0 1rem;
+  }
   p {
     background: #e36238;
     padding: 0.5rem 2rem;

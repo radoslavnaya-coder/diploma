@@ -4,7 +4,7 @@
       <router-link to="/home">
         <img src="@/assets/images/logo.png" width="118" height="86" />
       </router-link>
-      <div>
+      <div class="search">
         <input type="search" name="main-search" />
         <label for="main-search"><MaterialSymbols_searchVue /></label>
       </div>
@@ -114,6 +114,17 @@ input::-webkit-search-cancel-button {
   img {
     max-width: 63px;
     max-height: 63px;
+  }
+}
+@media (max-width: 992px) {
+  .search {
+    display: none;
+  }
+  .button {
+    background: url(@/assets/images/plus-background.png) no-repeat center ;
+  }
+  .container {
+    margin: 0.5rem 2rem;
   }
 }
 </style>

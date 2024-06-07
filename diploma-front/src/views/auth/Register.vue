@@ -97,7 +97,7 @@ export default {
             }
           );
           form.value = response.data;
-          await router.push("/login");
+          router.push("/login");
         } catch (err) {
           throw new Error(err);
         }
@@ -148,7 +148,6 @@ export default {
     flex-direction: column;
     gap: 0.5rem;
     font-size: 18px;
-    width: 26rem;
   }
 
   input,
@@ -265,7 +264,25 @@ export default {
   border-color: #7b7b7b;
 }
 /* end checkbox */
-
+@media (max-width: 576px) {
+  * {
+    font-size: 14px;
+  }
+  .arrow {
+    font-size: 14px;
+  }
+}
+@media (max-width: 1046px) {
+  .images{
+    img {
+      max-height: 60vh;
+    }
+  }
+  .content {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 @keyframes fade {
   0% {
     background: #e36238;

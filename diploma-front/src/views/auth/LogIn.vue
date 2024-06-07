@@ -52,7 +52,7 @@ export default {
 
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("userId", response.data.user_id);
-        await router.push("/home");
+        router.push("/home");
       } catch (err) {
         throw new Error(err);
       }
@@ -70,7 +70,6 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100%;
-
   img {
     max-width: 100%;
     max-height: 100vh;
@@ -90,7 +89,6 @@ export default {
     flex-direction: column;
     gap: 0.5rem;
     font-size: 18px;
-    width: 26rem;
   }
 
   img {
@@ -147,7 +145,22 @@ form div {
     cursor: pointer;
   }
 }
-
+@media (max-width: 576px) {
+  * {
+    font-size: 14px;
+  }
+}
+@media (max-width: 1046px) {
+  .images{
+    img {
+      max-height: 60vh;
+    }
+  }
+  .content {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 @keyframes fade {
   0% {
     background: #e36238;
