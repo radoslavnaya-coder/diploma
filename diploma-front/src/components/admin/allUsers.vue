@@ -1,16 +1,16 @@
 <template>
-    <div class="category-options">
+    <div class="user-options">
       <div>
-        <input v-model="form.name" type="text" placeholder="Название" />
-        <button @click.prevent="sendData()">Добавить категорию</button>
+        <input v-model="form.name" type="text" placeholder="Логин" />
+        <button @click.prevent="sendData()">Искать пользователя</button>
       </div>
       <ul
-        v-for="category in categories"
-        :key="category.id"
+        v-for="user in users"
+        :key="user.id"
         class="outlined-orange"
         variant="outlined"
       >
-        <li>{{ category.name }}</li>
+        <li>{{ user.name }}</li>
       </ul>
     </div>
   </template>
@@ -18,42 +18,20 @@
   <script>
   import { ref, reactive, onMounted } from "vue";
   import { instance } from "@/components/axios/instance";
-  import router from "@/router";
   
   export default {
     setup() {
-      const token = localStorage.getItem("token");
-      const categories = ref();
+      const users = ref();
       onMounted(() => {
         instance.get("/allUsers").then((res) => {
-          categories.value = res.data;
+          users.value = res.data;
         });
       });
       const form = reactive({
         name: "",
       });
   
-      const sendData = async () => {
-        try {
-          const response = await instance.post(
-            "/addCategory",
-            {
-              name: form.name,
-            },
-            {
-              headers: {
-                "Content-type": "application/json",
-                Authorization: "Bearer " + token,
-              },
-            }
-          );
-          form.value = response.data;
-          router.go(0);
-        } catch (err) {
-          throw new Error(err);
-        }
-      };
-      return { categories, form, sendData };
+      return { users, form };
     },
   };
   </script>
@@ -62,7 +40,7 @@
   ul {
     list-style-type: none;
   }
-  .category-options {
+  .user-options {
     width: 100%;
     max-width: 500px;
     margin: 0 auto;

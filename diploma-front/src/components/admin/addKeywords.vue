@@ -2,7 +2,7 @@
   <div class="category-options">
     <div>
       <input v-model="form.name" type="text" placeholder="Название" />
-      <button @click.prevent="sendData()">Добавить категорию</button>
+      <button @click.prevent="sendData()">Добавить ключ-слово</button>
     </div>
     <ul
       v-for="category in categories"
